@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Ohmsche Gesetz · Look 2 (Bulma)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--U:#3e8ed0;--I:#48c78e;--R:#ffae00}
+  html{scroll-behavior:smooth}
+  body{font-family:'Nunito',system-ui,sans-serif;background:linear-gradient(180deg,#eef4fb 0%,#f6f8fc 100%)}
+  .hero.is-ohm{background:linear-gradient(120deg,#3e8ed0,#48c78e)}
+  .uU{color:var(--U);font-weight:800}.uI{color:var(--I);font-weight:800}.uR{color:var(--R);font-weight:800}
+  .formula{font-size:1.8rem;text-align:center;font-weight:800}
+  .progress-top{position:fixed;top:0;left:0;height:4px;width:100%;z-index:60;background:transparent}
+  #progress{height:100%;width:0;background:linear-gradient(90deg,var(--U),var(--I));transition:width .1s}
+  .box{border-radius:16px}
+  .qcard{border-top:5px solid var(--bar);border-radius:14px}
+  .qcard.U{--bar:var(--U)}.qcard.I{--bar:var(--I)}.qcard.R{--bar:var(--R)}
+  .sym{font-size:2.4rem;font-weight:800;line-height:1}
+  .levelhead{font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#7a7a7a;margin:1.6rem 0 .3rem;font-size:.8rem}
+  .ans-input{max-width:140px;text-align:right}
+  .solution{border-left:4px solid var(--U);padding-left:14px;margin-top:12px;display:none}
+  .solution.show{display:block}
+  .num-badge{background:linear-gradient(135deg,var(--U),var(--I));color:#fff;font-weight:800;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;flex:none}
+  figcaption{font-size:.8rem;color:#7a7a7a;text-align:center;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="progress-top"><div id="progress"></div></div>
+
+<nav class="navbar is-spaced" style="background:transparent">
+  <div class="container">
+    <div class="navbar-brand">
+      <span class="navbar-item title is-5 mb-0">⚡ Ohmsches Gesetz</span>
+    </div>
+    <div class="navbar-menu is-active" style="background:transparent;box-shadow:none">
+      <div class="navbar-end">
+        <a href="#grundlagen" class="navbar-item">Grundlagen</a>
+        <a href="#umstellen" class="navbar-item">Umstellen</a>
+        <a href="#kennlinie" class="navbar-item">Kennlinie</a>
+        <a href="#uebungen" class="navbar-item">Übungen</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero is-ohm">
+  <div class="hero-body has-text-centered">
+    <p class="is-uppercase has-text-white-bis" style="letter-spacing:.25em;font-size:.8rem;opacity:.85">Physik · Klasse 9</p>
+    <h1 class="title is-1 has-text-white mt-3">Das Ohmsche Gesetz</h1>
+    <p class="subtitle is-4 has-text-white-bis mt-2" style="opacity:.95">Verstehen, üben, rechnen.</p>
+  </div>
+</section>
+
+<div class="container" style="max-width:900px;padding:0 1rem 4rem">
+
+  <!-- GRUNDLAGEN -->
+  <section id="grundlagen" class="mt-6">
+    <span class="tag is-info is-light is-medium mb-3">1 · Grundlagen</span>
+    <div class="box">
+      <h2 class="title is-4">Das Ohmsche Gesetz &amp; der Widerstand</h2>
+      <p class="content">In jedem Stromkreis hängen drei Größen zusammen: die <span class="uU">Spannung U</span>,
+         die <span class="uI">Stromstärke I</span> und der <span class="uR">Widerstand R</span>.</p>
+      <div class="columns mt-2">
+        <div class="column"><div class="box qcard U has-text-centered">
+          <div class="sym uU">U</div><p class="has-text-weight-bold mt-2">Spannung</p>
+          <p class="is-size-7 has-text-grey">Einheit: Volt (V)</p><p class="is-size-7 mt-2">Der „Antrieb" des Stroms.</p></div></div>
+        <div class="column"><div class="box qcard I has-text-centered">
+          <div class="sym uI">I</div><p class="has-text-weight-bold mt-2">Stromstärke</p>
+          <p class="is-size-7 has-text-grey">Einheit: Ampere (A)</p><p class="is-size-7 mt-2">Ladung pro Zeit.</p></div></div>
+        <div class="column"><div class="box qcard R has-text-centered">
+          <div class="sym uR">R</div><p class="has-text-weight-bold mt-2">Widerstand</p>
+          <p class="is-size-7 has-text-grey">Einheit: Ohm (Ω)</p><p class="is-size-7 mt-2">Die „Bremse" des Stroms.</p></div></div>
+      </div>
+      <p class="content">Der deutsche Physiker <strong>Georg Simon Ohm</strong> (1789–1854) fand heraus: Bei vielen Leitern
+         – besonders Metallen bei gleichbleibender Temperatur – ist die Spannung <span class="uU">U</span>
+         <strong>proportional</strong> zur Stromstärke <span class="uI">I</span>. Der Quotient <span class="uU">U</span>/<span class="uI">I</span>
+         bleibt konstant – das ist der <span class="uR">Widerstand R</span>.</p>
+      <div class="notification is-light has-text-centered formula">
+        <span class="uU">U</span> = <span class="uR">R</span> · <span class="uI">I</span></div>
+      <p class="content"><strong>Anschaulich:</strong> Je größer <span class="uR">R</span>, desto weniger Strom fließt
+         bei gleicher Spannung. Einheit: 1 Ω = 1 V / 1 A.</p>
+      <div class="columns is-vcentered mt-2">
+        <div class="column">
+          <h3 class="title is-6 uR">Ein einfacher Stromkreis</h3>
+          <p class="is-size-7 has-text-grey">Eine Spannungsquelle treibt den Strom durch den Widerstand. Das
+             <strong>Amperemeter (A)</strong> misst die Stromstärke, das <strong>Voltmeter (V)</strong> die Spannung.</p>
+        </div>
+        <div class="column">
+          <svg viewBox="0 0 360 240" style="max-width:280px;display:block;margin:0 auto" aria-label="Schaltbild">
+            <g stroke="#7a7a7a" stroke-width="2.5" fill="none" stroke-linecap="round">
+              <path d="M60 60 H300"/><path d="M60 60 V180"/><path d="M300 60 V100"/>
+              <path d="M300 140 V180"/><path d="M60 180 H160"/><path d="M200 180 H300"/></g>
+            <g stroke="#7a7a7a" stroke-width="2.5"><line x1="170" y1="166" x2="170" y2="194"/><line x1="182" y1="174" x2="182" y2="186"/></g>
+            <text x="150" y="214" fill="#7a7a7a" font-size="12">U₀ · Quelle</text>
+            <rect x="285" y="100" width="30" height="40" rx="4" fill="#fff" stroke="#ffae00" stroke-width="2.5"/>
+            <text x="322" y="124" fill="#ffae00" font-size="15" font-weight="700">R</text>
+            <circle cx="180" cy="60" r="15" fill="#fff" stroke="#48c78e" stroke-width="2.5"/>
+            <text x="180" y="65" fill="#48c78e" font-size="14" font-weight="700" text-anchor="middle">A</text>
+            <circle cx="250" cy="120" r="15" fill="#fff" stroke="#3e8ed0" stroke-width="2.5"/>
+            <text x="250" y="125" fill="#3e8ed0" font-size="14" font-weight="700" text-anchor="middle">V</text>
+            <g stroke="#3e8ed0" stroke-width="1.8" fill="none" stroke-dasharray="4 3"><path d="M250 105 V92 H300"/><path d="M250 135 V150 H300"/></g>
+            <polygon points="118,52 132,60 118,68" fill="#48c78e"/><text x="106" y="46" fill="#48c78e" font-size="13" font-weight="700">I</text>
+          </svg>
+        </div>
+      </div>
+      <div class="notification is-warning is-light">
+        <strong>Achtung – nicht jeder Leiter ist „ohmsch":</strong> Eine Glühlampe wird bei mehr Strom heißer, ihr
+        Widerstand ändert sich – bei ihr ist U/I <u>nicht</u> konstant. Ohmsch sind z. B. Konstantandrähte bei konstanter Temperatur.</div>
+    </div>
+  </section>
+
+  <!-- UMSTELLEN -->
+  <section id="umstellen">
+    <span class="tag is-info is-light is-medium mb-3">2 · Die Formel umstellen</span>
+    <div class="box">
+      <h2 class="title is-4">Das U-I-R-Dreieck</h2>
+      <p class="content">Decke die gesuchte Größe ab – was übrig bleibt, ist die Rechnung.</p>
+      <div class="columns is-vcentered">
+        <div class="column has-text-centered">
+          <svg viewBox="0 0 300 230" style="max-width:240px" aria-label="Formeldreieck">
+            <polygon points="150,18 282,212 18,212" fill="#fafafa" stroke="#dbdbdb" stroke-width="2"/>
+            <line x1="60" y1="130" x2="240" y2="130" stroke="#dbdbdb" stroke-width="2"/>
+            <line x1="150" y1="130" x2="150" y2="212" stroke="#dbdbdb" stroke-width="2"/>
+            <text x="150" y="102" fill="#3e8ed0" font-size="44" font-weight="800" text-anchor="middle">U</text>
+            <text x="108" y="186" fill="#ffae00" font-size="40" font-weight="800" text-anchor="middle">R</text>
+            <text x="196" y="186" fill="#48c78e" font-size="40" font-weight="800" text-anchor="middle">I</text>
+          </svg>
+        </div>
+        <div class="column">
+          <div class="notification is-light formula" style="font-size:1.4rem"><span class="uU">U</span> = <span class="uR">R</span> · <span class="uI">I</span></div>
+          <div class="notification is-light formula" style="font-size:1.4rem"><span class="uR">R</span> = <span class="uU">U</span> / <span class="uI">I</span></div>
+          <div class="notification is-light formula" style="font-size:1.4rem"><span class="uI">I</span> = <span class="uU">U</span> / <span class="uR">R</span></div>
+        </div>
+      </div>
+      <div class="notification is-info is-light">💡 <strong>Einheiten umrechnen!</strong> 1 mA = 0,001 A · 1 kΩ = 1000 Ω · 1 kV = 1000 V. Vor dem Einsetzen immer in V, A, Ω.</div>
+    </div>
+  </section>
+
+  <!-- KENNLINIE -->
+  <section id="kennlinie">
+    <span class="tag is-info is-light is-medium mb-3">3 · Die U-I-Kennlinie</span>
+    <div class="box">
+      <h2 class="title is-4">Wenn U und I proportional sind</h2>
+      <p class="content">Bei einem ohmschen Widerstand ergibt sich eine <strong>Ursprungsgerade</strong>. Bewege den Regler.</p>
+      <div class="columns is-vcentered">
+        <div class="column">
+          <svg viewBox="0 0 360 280" style="width:100%" aria-label="Kennlinie">
+            <line x1="50" y1="240" x2="340" y2="240" stroke="#7a7a7a" stroke-width="2"/>
+            <line x1="50" y1="240" x2="50" y2="20" stroke="#7a7a7a" stroke-width="2"/>
+            <polygon points="340,240 332,236 332,244" fill="#7a7a7a"/><polygon points="50,20 46,28 54,28" fill="#7a7a7a"/>
+            <text x="326" y="262" fill="#7a7a7a" font-size="13">I in A</text><text x="14" y="30" fill="#7a7a7a" font-size="13">U in V</text>
+            <g stroke="#e8e8e8" stroke-width="1">
+              <line x1="108" y1="240" x2="108" y2="20"/><line x1="166" y1="240" x2="166" y2="20"/>
+              <line x1="224" y1="240" x2="224" y2="20"/><line x1="282" y1="240" x2="282" y2="20"/>
+              <line x1="50" y1="196" x2="340" y2="196"/><line x1="50" y1="152" x2="340" y2="152"/>
+              <line x1="50" y1="108" x2="340" y2="108"/><line x1="50" y1="64" x2="340" y2="64"/></g>
+            <g fill="#7a7a7a" font-size="11">
+              <text x="103" y="256">1</text><text x="161" y="256">2</text><text x="219" y="256">3</text><text x="277" y="256">4</text>
+              <text x="34" y="200">2</text><text x="34" y="156">4</text><text x="34" y="112">6</text><text x="34" y="68">8</text></g>
+            <line id="kLine" x1="50" y1="240" x2="282" y2="64" stroke="#ffae00" stroke-width="3"/>
+            <circle id="kDot" cx="166" cy="152" r="5" fill="#ffae00"/>
+          </svg>
+        </div>
+        <div class="column">
+          <p>Widerstand: <strong id="kVal" class="uR is-size-4">2 Ω</strong></p>
+          <input id="kSlider" type="range" min="1" max="4" value="2" step="0.5" style="width:100%;accent-color:#ffae00">
+          <p id="kInfo" class="is-size-7 has-text-grey mt-2">Beispielpunkt: bei I = 2 A liegt U = 4 V an → R = U/I = 2 Ω.</p>
+          <p class="is-size-7 has-text-grey">Je steiler die Gerade, desto größer der Widerstand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBUNGEN -->
+  <section id="uebungen">
+    <span class="tag is-info is-light is-medium mb-3">4 · Übungen</span>
+    <p class="content has-text-grey">Schritt für Schritt schwerer – von der einfachen Spannungsberechnung bis zum
+       Umstellen mit Einheitenumrechnung. <strong>Prüfen</strong> kontrolliert, <strong>Lösung</strong> zeigt den Rechenweg.</p>
+    <div id="taskContainer"></div>
+  </section>
+</div>
+
+<footer class="footer has-text-centered" style="background:transparent">
+  <p class="is-size-7 has-text-grey">Physik · Klasse 9 · „Ohmsches Gesetz" · Look 2 (Bulma) · Alle Eingaben bleiben lokal im Browser.</p>
+</footer>
+
+<script>
+const prog=document.getElementById("progress");
+addEventListener("scroll",()=>{const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});
+
+const TASKS=[
+  {lvl:1, solve:'U', unit:'V', answer:3, tol:0.02,
+   ctx:"In einer Taschenlampe sitzt ein kleines Glühlämpchen mit dem Widerstand R = 6 Ω. Durch den Glühfaden fließt ein Strom von I = 0,5 A.",
+   ask:"Berechne die Spannung U, die an dem Lämpchen anliegt.",
+   given:{R:'6 Ω', I:'0,5 A'},
+   steps:["Gesucht: U → U = R · I","U = 6 Ω · 0,5 A","U = 3 V"]},
+  {lvl:1, solve:'U', unit:'V', answer:12, tol:0.02,
+   ctx:"Ein Modellauto-Motor hat den Widerstand R = 4 Ω. Es fließt ein Strom von I = 3 A.",
+   ask:"Berechne die anliegende Spannung U.",
+   given:{R:'4 Ω', I:'3 A'},
+   steps:["Gesucht: U → U = R · I","U = 4 Ω · 3 A","U = 12 V"]},
+  {lvl:1, solve:'U', unit:'V', answer:9, tol:0.02,
+   ctx:"Durch einen Heizdraht im Physikraum mit R = 18 Ω fließt ein Strom von I = 0,5 A.",
+   ask:"Welche Spannung U liegt über dem Heizdraht an?",
+   given:{R:'18 Ω', I:'0,5 A'},
+   steps:["Gesucht: U → U = R · I","U = 18 Ω · 0,5 A","U = 9 V"]},
+
+  {lvl:2, solve:'U', unit:'V', answer:4.4, tol:0.02,
+   ctx:"Eine rote LED wird mit einem Vorwiderstand R = 220 Ω betrieben. Durch sie fließt ein Strom von I = 20 mA.",
+   ask:"Berechne die Spannung U, die über dem Vorwiderstand abfällt.",
+   given:{R:'220 Ω', I:'20 mA'},
+   steps:["Einheit umrechnen: 20 mA = 0,02 A","U = R · I = 220 Ω · 0,02 A","U = 4,4 V"],
+   hint:"Wandle die Stromstärke zuerst von mA in A um."},
+  {lvl:2, solve:'U', unit:'V', answer:1.5, tol:0.02,
+   ctx:"In einem Klingelstromkreis fließt durch einen Widerstand von R = 30 Ω ein Strom von I = 50 mA.",
+   ask:"Berechne die Spannung U über dem Widerstand.",
+   given:{R:'30 Ω', I:'50 mA'},
+   steps:["Einheit umrechnen: 50 mA = 0,05 A","U = R · I = 30 Ω · 0,05 A","U = 1,5 V"],
+   hint:"50 mA = 0,05 A."},
+
+  {lvl:3, solve:'R', unit:'Ω', answer:50, tol:0.02,
+   ctx:"Ein Bügeleisen ist an die Netzspannung U = 230 V angeschlossen. Dabei fließt ein Strom von I = 4,6 A.",
+   ask:"Berechne den Widerstand R des Bügeleisens.",
+   given:{U:'230 V', I:'4,6 A'},
+   steps:["Formel umstellen: U = R · I  | : I","R = U / I = 230 V / 4,6 A","R = 50 Ω"],
+   hint:"Stelle U = R·I nach R um: R = U / I."},
+  {lvl:3, solve:'R', unit:'Ω', answer:2.5, tol:0.02,
+   ctx:"Ein USB-Ladegerät liefert U = 5 V. Beim Laden fließt ein Strom von I = 2 A.",
+   ask:"Welchen Widerstand R hat das angeschlossene Gerät?",
+   given:{U:'5 V', I:'2 A'},
+   steps:["R = U / I = 5 V / 2 A","R = 2,5 Ω"],
+   hint:"R = U / I."},
+  {lvl:3, solve:'R', unit:'Ω', answer:24, tol:0.02,
+   ctx:"Eine Autolampe wird an die Bordspannung U = 12 V angeschlossen. Durch sie fließt ein Strom von I = 0,5 A.",
+   ask:"Berechne den Widerstand R der Lampe in diesem Betriebspunkt.",
+   given:{U:'12 V', I:'0,5 A'},
+   steps:["R = U / I = 12 V / 0,5 A","R = 24 Ω"],
+   hint:"R = U / I."},
+
+  {lvl:4, solve:'I', unit:'A', answer:0.4, tol:0.02,
+   ctx:"Eine Glühlampe mit dem Widerstand R = 575 Ω wird an die Netzspannung U = 230 V angeschlossen.",
+   ask:"Berechne die Stromstärke I durch die Lampe.",
+   given:{U:'230 V', R:'575 Ω'},
+   steps:["Formel umstellen: U = R · I  | : R","I = U / R = 230 V / 575 Ω","I = 0,4 A"],
+   hint:"Stelle U = R·I nach I um: I = U / R."},
+  {lvl:4, solve:'I', unit:'mA', answer:50, tol:0.02,
+   ctx:"An einen Widerstand R = 240 Ω wird eine Spannung von U = 12 V angelegt.",
+   ask:"Berechne die Stromstärke I – gib das Ergebnis in Milliampere (mA) an.",
+   given:{U:'12 V', R:'240 Ω'},
+   steps:["I = U / R = 12 V / 240 Ω","I = 0,05 A","Umrechnen: 0,05 A = 50 mA"],
+   hint:"Erst I = U/R in Ampere rechnen, dann ·1000 für mA."},
+
+  {lvl:5, solve:'I', unit:'mA', answer:6, tol:0.02,
+   ctx:"In einer Schaltung liegt an einem Widerstand von R = 1,5 kΩ eine Spannung von U = 9 V (Blockbatterie).",
+   ask:"Berechne die Stromstärke I in Milliampere (mA).",
+   given:{U:'9 V', R:'1,5 kΩ'},
+   steps:["Einheit umrechnen: 1,5 kΩ = 1500 Ω","I = U / R = 9 V / 1500 Ω = 0,006 A","Umrechnen: 0,006 A = 6 mA"],
+   hint:"1,5 kΩ = 1500 Ω. Ergebnis dann von A in mA umrechnen."},
+  {lvl:5, solve:'R', unit:'kΩ', answer:2.2, tol:0.02,
+   ctx:"Durch einen Vorwiderstand fließt bei einer Spannung von U = 11 V ein Strom von I = 5 mA.",
+   ask:"Berechne den Widerstand R – gib das Ergebnis in Kiloohm (kΩ) an.",
+   given:{U:'11 V', I:'5 mA'},
+   steps:["Einheit umrechnen: 5 mA = 0,005 A","R = U / I = 11 V / 0,005 A = 2200 Ω","Umrechnen: 2200 Ω = 2,2 kΩ"],
+   hint:"Erst 5 mA = 0,005 A, dann R = U/I, dann Ω in kΩ."},
+  {lvl:5, solve:'U', unit:'V', answer:7.5, tol:0.02,
+   ctx:"Ein Sensor verhält sich wie ein ohmscher Widerstand von R = 3,0 kΩ. Durch ihn fließt ein Strom von I = 2,5 mA.",
+   ask:"Berechne die Spannung U über dem Sensor.",
+   given:{R:'3,0 kΩ', I:'2,5 mA'},
+   steps:["Umrechnen: 3,0 kΩ = 3000 Ω und 2,5 mA = 0,0025 A","U = R · I = 3000 Ω · 0,0025 A","U = 7,5 V"],
+   hint:"Beide Größen in Grundeinheiten: kΩ→Ω und mA→A."}
+];
+
+const ucl={U:'uU',I:'uI',R:'uR'};
+const LEVELHEAD={1:'Stufe 1 · Spannung U direkt berechnen',2:'Stufe 2 · mit Einheitenumrechnung (mA)',3:'Stufe 3 · Formel nach R umstellen',4:'Stufe 4 · Formel nach I umstellen',5:'Stufe 5 · mehrschrittig (kΩ, mA)'};
+const LEVELNAME={1:'Einstieg',2:'Aufbau',3:'Umstellen R',4:'Umstellen I',5:'Transfer'};
+const c=document.getElementById("taskContainer");
+const fmt=n=>(''+n).replace('.',',');
+let cur=0,num=0;
+TASKS.forEach((t,i)=>{
+  if(t.lvl!==cur){cur=t.lvl;const h=document.createElement("p");h.className="levelhead";h.textContent=LEVELHEAD[t.lvl];c.appendChild(h);}
+  num++;
+  const given=Object.entries(t.given).map(([k,v])=>`<span class="tag is-light is-medium"><span class="${ucl[k]} mr-1">${k}</span> = ${v}</span>`).join(' ');
+  const card=document.createElement("div");
+  card.className="box";
+  card.innerHTML=`
+    <div class="is-flex is-align-items-center mb-2" style="gap:.7rem">
+      <span class="num-badge">${num}</span>
+      <span class="tag is-rounded">${LEVELNAME[t.lvl]}</span>
+    </div>
+    <p>${t.ctx}</p>
+    <div class="tags mt-2">${given}</div>
+    <p class="has-text-weight-bold mb-2">${t.ask}</p>
+    <div class="field is-grouped is-align-items-center" style="gap:.6rem;flex-wrap:wrap">
+      <span class="is-size-5 has-text-weight-bold ${ucl[t.solve]}">${t.solve} =</span>
+      <input data-i="${i}" class="input ans-input" type="text" inputmode="decimal" placeholder="?">
+      <span class="has-text-grey">${t.unit}</span>
+      <button data-check="${i}" class="button is-info">Prüfen</button>
+      <button data-sol="${i}" class="button is-light">Lösung</button>
+    </div>
+    ${t.hint?`<p class="is-size-7 has-text-grey mt-3">💡 ${t.hint}</p>`:''}
+    <div data-fb="${i}" class="notification mt-3 py-2 px-4" style="display:none"></div>
+    <div data-soldiv="${i}" class="solution">
+      <p class="is-size-7 has-text-weight-bold is-uppercase uR" style="letter-spacing:.06em">Rechenweg</p>
+      ${t.steps.map(s=>`<p>${s}</p>`).join('')}
+    </div>`;
+  c.appendChild(card);
+});
+const parseNum=s=>!s?NaN:parseFloat(s.replace(/\s/g,'').replace(',','.'));
+function check(i){
+  const t=TASKS[i],inp=document.querySelector(`input[data-i="${i}"]`),fb=document.querySelector(`[data-fb="${i}"]`);
+  const v=parseNum(inp.value);inp.classList.remove('is-success','is-danger');
+  fb.style.display='block';fb.className='notification mt-3 py-2 px-4';
+  if(isNaN(v)){fb.classList.add('is-warning','is-light');fb.textContent='Bitte gib eine Zahl ein.';return;}
+  if(Math.abs(v-t.answer)<=Math.max(Math.abs(t.answer)*t.tol,1e-9)){
+    fb.classList.add('is-success','is-light');fb.textContent='✓ Richtig! Super gelöst.';inp.classList.add('is-success');
+  }else{fb.classList.add('is-warning','is-light');fb.textContent='✗ Noch nicht richtig. Tipp: Einheiten umrechnen und Formel prüfen.';inp.classList.add('is-danger');}
+}
+c.addEventListener("click",e=>{
+  const cb=e.target.closest('[data-check]'),sb=e.target.closest('[data-sol]');
+  if(cb)check(+cb.dataset.check);
+  if(sb){const d=document.querySelector(`[data-soldiv="${sb.dataset.sol}"]`);const o=d.classList.toggle("show");sb.textContent=o?"Lösung verbergen":"Lösung";}
+});
+c.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.dataset.i!==undefined)check(+e.target.dataset.i);});
+
+const slider=document.getElementById("kSlider"),kLine=document.getElementById("kLine"),kDot=document.getElementById("kDot"),kVal=document.getElementById("kVal"),kInfo=document.getElementById("kInfo");
+function drawK(R){let eI=4,eU=R*eI;if(eU>8){eU=8;eI=eU/R;}kLine.setAttribute('x2',50+eI*58);kLine.setAttribute('y2',240-eU*22);let dI=2,dU=R*dI;if(dU>8){dU=8;dI=dU/R;}kDot.setAttribute('cx',50+dI*58);kDot.setAttribute('cy',240-dU*22);kVal.textContent=fmt(R)+' Ω';kInfo.innerHTML=`Beispielpunkt: bei I = ${fmt(dI)} A liegt U = ${fmt(+dU.toFixed(2))} V an → R = U/I = ${fmt(R)} Ω.`;}
+slider.addEventListener("input",()=>drawK(parseFloat(slider.value)));slider.value='2';drawK(2);
+</script>
+<!-- rechtliches --><style>.erik-recht{font:13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;text-align:center;padding:18px 12px 22px;opacity:.75}.erik-recht a{color:inherit}@media print{.erik-recht{display:none}}</style><footer class="erik-recht"><a href="https://erikdahlmann.github.io/impressum.html">Impressum</a> · <a href="https://erikdahlmann.github.io/datenschutz.html">Datenschutz</a></footer><!-- /rechtliches --></body>
+</html>
