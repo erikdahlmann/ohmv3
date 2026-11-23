@@ -76,9 +76,9 @@
           <p class="is-size-7 has-text-grey">Einheit: Ohm (Ω)</p><p class="is-size-7 mt-2">Die „Bremse" des Stroms.</p></div></div>
       </div>
       <p class="content">Der deutsche Physiker <strong>Georg Simon Ohm</strong> (1789–1854) fand heraus: Bei vielen Leitern
-         – besonders Metallen bei gleichbleibender Temperatur – ist die Spannung <span class="uU">U</span>
+         (besonders Metallen bei gleichbleibender Temperatur) ist die Spannung <span class="uU">U</span>
          <strong>proportional</strong> zur Stromstärke <span class="uI">I</span>. Der Quotient <span class="uU">U</span>/<span class="uI">I</span>
-         bleibt konstant – das ist der <span class="uR">Widerstand R</span>.</p>
+         bleibt konstant. Das ist der <span class="uR">Widerstand R</span>.</p>
       <div class="notification is-light has-text-centered formula">
         <span class="uU">U</span> = <span class="uR">R</span> · <span class="uI">I</span></div>
       <p class="content"><strong>Anschaulich:</strong> Je größer <span class="uR">R</span>, desto weniger Strom fließt
@@ -108,8 +108,8 @@
         </div>
       </div>
       <div class="notification is-warning is-light">
-        <strong>Achtung – nicht jeder Leiter ist „ohmsch":</strong> Eine Glühlampe wird bei mehr Strom heißer, ihr
-        Widerstand ändert sich – bei ihr ist U/I <u>nicht</u> konstant. Ohmsch sind z. B. Konstantandrähte bei konstanter Temperatur.</div>
+        <strong>Achtung: Nicht jeder Leiter ist „ohmsch":</strong> Eine Glühlampe wird bei mehr Strom heißer, ihr
+        Widerstand ändert sich. Bei ihr ist U/I <u>nicht</u> konstant. Ohmsch sind z. B. Konstantandrähte bei konstanter Temperatur.</div>
     </div>
   </section>
 
@@ -118,7 +118,7 @@
     <span class="tag is-info is-light is-medium mb-3">2 · Die Formel umstellen</span>
     <div class="box">
       <h2 class="title is-4">Das U-I-R-Dreieck</h2>
-      <p class="content">Decke die gesuchte Größe ab – was übrig bleibt, ist die Rechnung.</p>
+      <p class="content">Decke die gesuchte Größe ab. Was übrig bleibt, ist die Rechnung.</p>
       <div class="columns is-vcentered">
         <div class="column has-text-centered">
           <svg viewBox="0 0 300 230" style="max-width:240px" aria-label="Formeldreieck">
@@ -136,7 +136,7 @@
           <div class="notification is-light formula" style="font-size:1.4rem"><span class="uI">I</span> = <span class="uU">U</span> / <span class="uR">R</span></div>
         </div>
       </div>
-      <div class="notification is-info is-light">💡 <strong>Einheiten umrechnen!</strong> 1 mA = 0,001 A · 1 kΩ = 1000 Ω · 1 kV = 1000 V. Vor dem Einsetzen immer in V, A, Ω.</div>
+      <div class="notification is-info is-light"><strong>Einheiten umrechnen:</strong> 1 mA = 0,001 A · 1 kΩ = 1000 Ω · 1 kV = 1000 V. Vor dem Einsetzen immer in V, A, Ω.</div>
     </div>
   </section>
 
@@ -178,7 +178,7 @@
   <!-- ÜBUNGEN -->
   <section id="uebungen">
     <span class="tag is-info is-light is-medium mb-3">4 · Übungen</span>
-    <p class="content has-text-grey">Schritt für Schritt schwerer – von der einfachen Spannungsberechnung bis zum
+    <p class="content has-text-grey">Schritt für Schritt schwerer: von der einfachen Spannungsberechnung bis zum
        Umstellen mit Einheitenumrechnung. <strong>Prüfen</strong> kontrolliert, <strong>Lösung</strong> zeigt den Rechenweg.</p>
     <div id="taskContainer"></div>
   </section>
@@ -249,7 +249,7 @@ const TASKS=[
    hint:"Stelle U = R·I nach I um: I = U / R."},
   {lvl:4, solve:'I', unit:'mA', answer:50, tol:0.02,
    ctx:"An einen Widerstand R = 240 Ω wird eine Spannung von U = 12 V angelegt.",
-   ask:"Berechne die Stromstärke I – gib das Ergebnis in Milliampere (mA) an.",
+   ask:"Berechne die Stromstärke I. Gib das Ergebnis in Milliampere (mA) an.",
    given:{U:'12 V', R:'240 Ω'},
    steps:["I = U / R = 12 V / 240 Ω","I = 0,05 A","Umrechnen: 0,05 A = 50 mA"],
    hint:"Erst I = U/R in Ampere rechnen, dann ·1000 für mA."},
@@ -262,7 +262,7 @@ const TASKS=[
    hint:"1,5 kΩ = 1500 Ω. Ergebnis dann von A in mA umrechnen."},
   {lvl:5, solve:'R', unit:'kΩ', answer:2.2, tol:0.02,
    ctx:"Durch einen Vorwiderstand fließt bei einer Spannung von U = 11 V ein Strom von I = 5 mA.",
-   ask:"Berechne den Widerstand R – gib das Ergebnis in Kiloohm (kΩ) an.",
+   ask:"Berechne den Widerstand R. Gib das Ergebnis in Kiloohm (kΩ) an.",
    given:{U:'11 V', I:'5 mA'},
    steps:["Einheit umrechnen: 5 mA = 0,005 A","R = U / I = 11 V / 0,005 A = 2200 Ω","Umrechnen: 2200 Ω = 2,2 kΩ"],
    hint:"Erst 5 mA = 0,005 A, dann R = U/I, dann Ω in kΩ."},
@@ -301,7 +301,7 @@ TASKS.forEach((t,i)=>{
       <button data-check="${i}" class="button is-info">Prüfen</button>
       <button data-sol="${i}" class="button is-light">Lösung</button>
     </div>
-    ${t.hint?`<p class="is-size-7 has-text-grey mt-3">💡 ${t.hint}</p>`:''}
+    ${t.hint?`<p class="is-size-7 has-text-grey mt-3">Tipp: ${t.hint}</p>`:''}
     <div data-fb="${i}" class="notification mt-3 py-2 px-4" style="display:none"></div>
     <div data-soldiv="${i}" class="solution">
       <p class="is-size-7 has-text-weight-bold is-uppercase uR" style="letter-spacing:.06em">Rechenweg</p>
@@ -316,7 +316,7 @@ function check(i){
   fb.style.display='block';fb.className='notification mt-3 py-2 px-4';
   if(isNaN(v)){fb.classList.add('is-warning','is-light');fb.textContent='Bitte gib eine Zahl ein.';return;}
   if(Math.abs(v-t.answer)<=Math.max(Math.abs(t.answer)*t.tol,1e-9)){
-    fb.classList.add('is-success','is-light');fb.textContent='✓ Richtig! Super gelöst.';inp.classList.add('is-success');
+    fb.classList.add('is-success','is-light');fb.textContent='✓ Richtig.';inp.classList.add('is-success');
   }else{fb.classList.add('is-warning','is-light');fb.textContent='✗ Noch nicht richtig. Tipp: Einheiten umrechnen und Formel prüfen.';inp.classList.add('is-danger');}
 }
 c.addEventListener("click",e=>{
